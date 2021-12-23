@@ -1,0 +1,22 @@
+$defaulticondefinitions: (
+  ( "icon-url":"https://cdn.jsdelivr.net/npm/simple-icons/icons/codepen.svg",
+   "name" :"codepen.io",
+   "hrefmatch" :"https://codepen.io/"
+    ),
+  ( "icon-url":"https://cdn.jsdelivr.net/npm/simple-icons/icons/youtube.svg",
+   "name" :"youtube",
+   "hrefmatch" :"https://youtube.com/"
+    ),
+  ( "icon-url":"https://cdn.jsdelivr.net/npm/simple-icons/icons/github.svg",
+   "name" :"github",
+   "hrefmatch" :"https://github.com/"
+    ),
+	( "icon-url":"https://cdn.jsdelivr.net/npm/simple-icons/icons/linked.svg",
+   "name" :"linkedin",
+   "hrefmatch" :"https://www.linkedin.com/in/"
+    )
+	
+	
+);
+
+$icondefinitions: $defaulticondefinitions !default;

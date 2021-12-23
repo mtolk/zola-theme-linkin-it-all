@@ -1,0 +1,80 @@
+{% import "macro_picture.html" as picture %}{%- if section -%}
+	{%- set  pageorsection = section -%}
+{%- elif page -%}
+    {%- set pageorsection = page -%}
+{%- endif -%}
+{%- if pageorsection.extra.style -%}
+	{%- set style = pageorsection.extra.style -%}
+{%- elif config.extra.style -%}
+	{%- set style = config.extra.style -%}
+{%- else -%}
+	{%- set style = "style" -%}
+{%- endif -%}
+{%- set styleconfig = config.extra.styleconfig | get(key=style) -%}
+<!DOCTYPE html>
+<html lang="{{ config.default_language }}">
+	<head>
+		<meta charset="UTF-8">
+		<title>{{ config.extra.title}}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">	
+		<link rel="stylesheet" href="/{{ style }}.css">			
+		{% if config.extra.description %}
+		<meta name="description" content="{{ config.extra.description }}"/>
+		{% endif %}
+		{% set linkinbiopageexists = load_data(path="content/linkinbio.md",required=false) %}
+		{% if linkinbiopageexists %}
+		{% set linkinbiopage = get_page(path="linkinbio.md") %}
+		<link rel="canonical" href="{{ linkinbiopage.permalink | safe }}" />
+		{% endif %}
+		<!-- Include the script that enables Netlify Identity on this page. -->
+		<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+	</head>
+	<body>
+		<main>
+			{% include "_header.html" %}
+			{% if config.extra.intro %}
+			<section class="intro">
+				{{ config.extra.intro | markdown | safe }}
+			</section>
+			{% endif %}
+			{% set onlineprofilesjsonobj = load_data(path="data/onlineprofiles.json",required=false) %}
+			{% if onlineprofilesjsonobj %}
+			{% if onlineprofilesjsonobj.profilelist %}
+			{% if onlineprofilesjsonobj.profilelist | length > 0 %}
+			<ul class="profiles">
+				{%- for profile in onlineprofilesjsonobj.profilelist %}
+				<li><a href="{{profile.link}}" {% if config.extra.openlinksinnewtab %} target="_blank" rel="noopener noreferrer" {% endif %}> {{profile.title}}</a></li><!-- optional image? -->	
+				{% endfor -%}
+			</ul>
+			{% endif %}
+			{% endif %}
+			{% endif %}
+			{% set linklistjson = load_data(path="data/linklist.json",required=false) %}
+			{% if linklistjson %}
+			{% if linklistjson.linklist %}
+			
+			{% if linklistjson.linklist | length > 0 %}
+			<ul class="links">
+				{%- for link in linklistjson.linklist -%}
+				<li>
+					<a href="{{link.link}}" {% if config.extra.openlinksinnewtab %} target="_blank" rel="noopener noreferrer" {% endif %}>
+						{%- if link.image -%}
+							{{picture::picture_fill(imagepath=link.image,sizes=styleconfig.linkpicture.sizes,variants_width=styleconfig.linkpicture.responsivesizes_w,variants_height=styleconfig.linkpicture.responsivesizes_h,alttext=link.imagealttext)}}
+				{#}
+							{%- set linkimage = resize_image(path=link.image, width=150, height=150) -%}
+							<img src="{{ linkimage.url | safe }}" {%if link.imagealttext %}alt="{{ link.imagealttext }}"{% endif %}/>#}	
+						{%- endif -%}
+						<p>{{link.title}}</p>
+					</a>
+				</li>
+				{%- endfor -%}
+			</ul>
+			{%- endif -%}
+			{%- endif -%}
+			{%- endif -%}
+			{#<!-- TODO add optional contact options -->#}
+		</main>
+		{% include "_footer.html" %}
+	</body>
+</html>

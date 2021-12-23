@@ -1,0 +1,15 @@
+		<footer>
+			{# When using this theme you must keep the attribution in the footer.
+			This work © 2021 by Marco Tolk is licensed under Attribution-NoDerivatives 4.0 International 
+			from https://chooser-beta.creativecommons.org/
+			-#}
+			{#- We are not using the zola translation function trans here because these are not read from theme.toml and we don't users having to set 
+			them in their config.toml. We  just want it to work.#}
+			<p>
+			{% if lang == 'nl' %}
+			Deze pagina is gemaakt met <a href="https://www.getzola.org/">Zola</a>	en het <a href="https://www.marcotolk.com/projects/linkin-it-all">linkin-it-all theme</a>	van <a href="https://www.marcotolk.com/">Marco Tolk</a>.
+			{% else %}
+			This page was made with <a href="https://www.getzola.org/">Zola</a>	using the <a href="https://www.marcotolk.com/projects/linkin-it-all">linkin-it-all theme</a>	by <a href="https://www.marcotolk.com/">Marco Tolk</a>.
+			{% endif %}
+			</p>
+		</footer>

@@ -1,0 +1,182 @@
+/*let's start with sanitize */
+@import 'sanitize12.0.1/_sanitize.scss', 'sanitize12.0.1/_forms.scss', 'sanitize12.0.1/_typography.scss', 'sanitize12.0.1/_reduce-motion.scss', 'sanitize12.0.1/_assets.scss'; // we choose not to use ,'sanitize12.0.1/_page.scss'
+
+/* the configurable part */
+/*@import '_color-scheme.scss';*/
+@import '_typography-variables.scss';
+
+
+@import 'typography/_typography.scss';
+
+@import 'elements/_pre.scss';
+@import 'elements/_form.scss';
+
+
+
+@import '_genericmixins.scss';
+
+/*@import '_my-theme.scss';*/
+
+/*<!-- print styles? colors back to greyscale for print? -->*/
+
+
+
+////////////////////////////////////////////////////////////////////
+// generic document styles
+////////////////////////////////////////////////////////////////////
+
+a {
+	color: currentcolor;
+}
+
+/////////////////////////////////////////////////////////////////////////
+// document layout
+/////////////////////////////////////////////////////////////////////////
+body {
+	margin-left:10%;
+	margin-right:10%;
+	background:#fbc6c6;
+}
+
+main,footer {
+	background:#fff;
+	padding:1rem;
+}
+
+main > header, main > .intro,  footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+// style profile picture
+/////////////////////////////////////////////////////////////////////////
+main > header > img, main > header > picture  {
+	width: #{'max(15vw, 150px)'};
+	height: #{'max(15vw, 150px)'};
+	border: solid red 0.5rem;
+	border-radius: 50%;
+	overflow: hidden;
+	//clip-path: circle(50% at center);
+
+	
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+// style profiles
+/////////////////////////////////////////////////////////////////////////
+main ul.profiles {
+	@include replacelinkwithicon($icons:$icondefinitions,$size:1.6rem);
+	color:red;
+	display: flex;
+	flex-direction: row;
+    justify-content: flex-start;
+	justify-content: center;
+
+	margin: 0 0 0.5rem 0;
+	padding:0;
+	list-style-type: none;
+}
+
+main ul.profiles li {
+	padding-right:0.5rem;
+}
+
+/////////////////////////////////////////////////////////////////////////
+// style links
+/////////////////////////////////////////////////////////////////////////
+main ul.links {
+	margin:0;
+	padding:0;
+	list-style-type: none;
+	margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0;
+	width:100%;
+}
+
+main > ul.links > li > a {
+position:relative;
+	@include aAsbutton(#f9ebeb,#000,red);
+	
+	width:100%;
+	min-height:3rem;
+	
+	margin-bottom:1rem;
+	
+	
+	border-radius: 8px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+	display:inline-grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  column-gap: 10px;
+  justify-items:center;
+  
+  p {
+    grid-column: 2;
+  }
+  
+   & > picture {
+    display:block;
+    grid-column: 1;
+    border:solid 1px red;
+    overflow:hidden;
+    
+    
+    justify-self:start;
+    align-self:center;
+    margin-left:5px;
+    
+    
+  }
+  & > picture > img {
+    max-height: 50px;
+    max-width:200px;
+    object-fit:cover;
+    object-position:right;
+  }
+}
+/* :hover and :active ignore focus i think*/
+main > ul.links > li > a:before{
+		display:block;
+		display: flex;
+  align-items: center;
+  justify-content: center;
+  /* add the border*/
+		height:calc(100% + 2px);
+		top:-1px;
+		left:-2px;
+		width: 2rem;
+		background:red;
+		text-decoration:none;
+		position:absolute;
+		content: '>';
+		color:white;
+		
+		overflow: hidden;
+		opacity:0;
+		transition-property: opacity;
+  transition-duration: 0.8s;
+	border-top-right-radius:    1rem 5rem;
+border-bottom-right-radius: 1rem 5rem;
+border-right: 1px solid white;
+z-index:1;
+	}
+	
+	main > ul.links > li > a:hover:before, main > ul.links > li > a:active:before{
+	opacity:1
+	
+	}
+	
+
+
+
+
+

@@ -1,0 +1,39 @@
+/* Forms */
+input,select,textarea{border-radius: var(--rc)}
+
+input, select, textarea {font-size: 1rem; color:var(--textcolor); background: var(--brandmainlight);  padding: 0.3rem}
+
+button, input[type=submit], input[type=reset], input[type="button"] { -webkit-appearance: none; font-size: 1em; display: inline-block; color: var(--c3); background: var(--c1);  border: 0; margin: 4px;  padding: 0.3rem; cursor: pointer; text-align: center}
+
+button:hover, button:focus, input:hover, textarea:hover, select:hover {opacity: 0.8}
+
+fieldset{
+	border:none;
+	padding:0;margin:0;}
+	
+/* form layout */
+
+form {
+	display:flex;
+	flex-wrap: wrap;
+	justify-content:space-between;
+}
+form > .formfield {
+	min-width:15rem;
+}
+form > .formfield > input {
+	width:100%;
+}
+
+form > .formtextarea {
+	width:100%;
+}
+form > .formtextarea > textarea {
+	width:100%;
+}
+
+
+/* TODO add :invalid :valid :required don't forget icons for the color blind
+TODO change the order of input label so we we can style the label using sibling selector. :invalid ~ label 
+
+*/

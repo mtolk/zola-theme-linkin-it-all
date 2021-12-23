@@ -1,0 +1,14 @@
+{
+  "linklist": [
+    {
+      "title": "Linkin it all project page",
+      "link": "https://www.marcotolk.com/projects/linkin-it-all",
+      "image": "/images/uploads/linkin-it-all-logo.png",
+	  "imagealttext": "linkin-it-all project logo"
+    },
+    {
+      "title": "This theme on github",
+      "link": "https://github.com/mtolk/zola-theme-linkin-it-all"
+    }
+  ]
+}

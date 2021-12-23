@@ -1,0 +1,68 @@
+{% macro picture_fill(imagepath,sizes,variants_width,variants_height,alttext="") %}
+
+	{% set imagemeta = get_image_metadata(path=imagepath) %}
+	{# if the profileimage is an svg srcset and scaling is not needed #}
+	{% if imagemeta.format == 'svg' %}
+		<img src="{{ imagepath | safe }}" {% if alttext %}alt="{{ alttext }}"{% endif %}/>
+	{% else %}
+		{% set images = [] %}
+		{% set imageswebp = [] %}
+		{% set defaultimage = "" %}
+		{% for w in variants_width %}
+			{% set correspondingheight = variants_height | nth(n=loop.index-1)%}			
+			{% set im = resize_image(path=imagepath, width=w, height=w ) %}
+			{% set_global  images = images | concat(with=im.url ~ " " ~ w~"w") %}
+			
+			{% if defaultimage%} 
+			
+			{% else %}
+				{%set_global  defaultimage = im.url %}
+			{% endif %}
+			
+			{% set imwebp = resize_image(path=imagepath, width=w, height=w, format="webp", quality=80 ) %}
+			{% set_global imageswebp  = imageswebp | concat(with=imwebp.url ~ " " ~ w~"w") %}
+		{% endfor %}
+
+		<picture>
+			<source type="image/webp"
+			srcset="{{imageswebp | join(sep=" , ") | safe}}" sizes="{{sizes}}" />
+			<img src="{{ defaultimage | safe }}" {% if alttext %}alt="{{ alttext }}"{% endif %}
+			srcset="{{images | join(sep=" , ")| safe}}" sizes="{{sizes}}" />	
+		</picture>
+	{% endif %}
+{% endmacro picture_fill %}
+
+{% macro picture_fit_width(imagepath,sizes,variants_width,alttext="") %}
+
+	{% set imagemeta = get_image_metadata(path=imagepath) %}
+	{# if the profileimage is an svg srcset and scaling is not needed #}
+	{% if imagemeta.format == 'svg' %}
+		<img src="{{ imagepath | safe }}" {% if alttext %}alt="{{ alttext }}"{% endif %}/>
+	{% else %}
+		{% set images = [] %}
+		{% set imageswebp = [] %}
+		{% set defaultimage = "" %}
+		{% for w in variants_width %}
+						
+			{% set im = resize_image(path=config.extra.profileimage, width=w, op="fit_width"  ) %}
+			{% set_global  images = images | concat(with=im.url ~ " " ~ w~"w") %}
+			
+			{% if defaultimage%} 
+			
+			{% else %}
+				{%set_global  defaultimage = im.url %}
+			{% endif %}
+			
+			{% set imwebp = resize_image(path=config.extra.profileimage, width=w, op="fit_width", format="webp", quality=80 ) %}
+			{% set_global imageswebp  = imageswebp | concat(with=imwebp.url ~ " " ~ w~"w") %}
+		{% endfor %}
+
+		<picture>
+			<source type="image/webp"
+			srcset="{{imageswebp | join(sep=" , ")}}" sizes="{{sizes}}" />
+			<img src="{{ defaultimage | safe }}" {% if alttext %}alt="{{ alttext }}"{% endif %}
+			srcset="{{images | join(sep=" , ")}}" sizes="{{sizes}}" />	
+		</picture>
+	{% endif %}
+{% endmacro picture_fit_width %}
+

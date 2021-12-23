@@ -1,0 +1,52 @@
+#
+# This file is used when developing the theme.
+#
+# When editing your site either use the netlify-cms or edit the config.toml in the root of your project
+#
+
+
+
+# The URL the site will be built for
+base_url = "https://linkhub-demo.netlify.app"
+default_language = "en"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+
+
+
+[extra]
+title = "Your name's links[demo]"
+description = "All of 'my name''s profiles and links in one place."
+openlinksinnewtab = true
+profileimage = "/images/uploads/abstract-user-flat-4.svg"
+profileimagealttext = "my name portrait"
+404content = "## Page not found\n\nSorry. I have not gotten around to create this page yet.\n\nBut i do have this page for you. Enjoy my [links page](/)"
+enablenetlifycms = false #true for theme.toml
+intro = """
+write your intro here """
+style = "style"
+
+styleconfig.style.profilepicture.responsivesizes_w = [150,300,600,1000]
+styleconfig.style.profilepicture.responsivesizes_h = [150,300,600,1000]
+styleconfig.style.profilepicture.sizes = "15vw"
+styleconfig.style.linkpicture.responsivesizes_w = [100,200,300]
+styleconfig.style.linkpicture.responsivesizes_h = [100,200,300]
+styleconfig.style.linkpicture.sizes = "100px"
+
+styleconfig.hallo.profilepicture.responsivesizes_w = [150,300,600]
+styleconfig.hallo.profilepicture.responsivesizes_h = [150,300,600]
+styleconfig.hallo.profilepicture.sizes = "(min-width: 992px) 300px, 160px"
+styleconfig.hallo.linkpicture.responsivesizes_w = [100,200,300]
+styleconfig.hallo.linkpicture.responsivesizes_h = [100,200,300]
+styleconfig.hallo.linkpicture.sizes = "100px"

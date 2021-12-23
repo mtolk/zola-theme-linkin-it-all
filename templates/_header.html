@@ -1,0 +1,7 @@
+{% import "macro_picture.html" as picture %}
+			<header>
+				<h1>{{ config.extra.title}}</h1>			
+				{% if config.extra.profileimage %}
+				{{picture::picture_fill(imagepath=config.extra.profileimage,sizes=styleconfig.profilepicture.sizes,variants_width=styleconfig.profilepicture.responsivesizes_w,variants_height=styleconfig.profilepicture.responsivesizes_h,alttext=config.extra.profileimagealttext)}}
+				{% endif %}				
+			</header>

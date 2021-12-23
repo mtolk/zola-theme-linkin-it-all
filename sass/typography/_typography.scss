@@ -1,0 +1,132 @@
+/*  FONT block */
+	/*                adapted from https://www.smashingmagazine.com/2016/05/fluid-typography/                  
+						also inspired by https://unpkg.com/sanitize.css@12.0.1/typography.css 
+	*/
+		/* Older browsers */
+		html { font-size: 16px; }
+		/* Modern browsers only need this one responsive font-size */
+		@media screen and (min-width: 25em){
+		  html { font-size: calc( 16px + (22 - 16) * (100vw - 400px) / (1400 - 400) ); }
+		}
+		
+		$default-fonts: system-ui,
+						-apple-system, 
+						BlinkMacSystemFont,  
+						"Segoe UI",  
+						Roboto,  
+						Oxygen,  
+						Ubuntu, 
+						Cantarell, 
+						"Droid Sans", 
+						"Helvetica Neue",
+						"Fira Sans",
+						"Noto Sans", 
+						"Apple Color Emoji",
+						"Segoe UI Emoji",
+						"Segoe UI Symbol", 
+						"Noto Color Emoji", 
+						sans-serif !default;
+						
+		$header-fonts: system-ui,
+						-apple-system, 
+						BlinkMacSystemFont,  
+						"Segoe UI",  
+						Roboto,  
+						Oxygen,  
+						Ubuntu, 
+						Cantarell, 
+						"Droid Sans", 
+						"Helvetica Neue",
+						"Fira Sans",
+						"Noto Sans", 
+						"Apple Color Emoji",
+						"Segoe UI Emoji",
+						"Segoe UI Symbol", 
+						"Noto Color Emoji", 
+						sans-serif !default;
+		
+		$default-monospace-fonts: SFMono-Regular, 
+						      Consolas, 
+							  "Liberation Mono", 
+							  Menlo, 
+							  Courier, 
+							  "Courier New",
+							  "Roboto Mono",
+							  "Ubuntu Monospace",
+							  "Noto Mono",
+							  "Oxygen Mono",
+							  "Apple Color Emoji",
+							  "Segoe UI Emoji",
+							  "Segoe UI Symbol",
+							  "Noto Color Emoji"
+							  monospace !default;
+							  
+							  
+							  
+
+
+
+
+/*                     based on sanitize.css and basic.css                                                 */
+		/*  TODO  use unicode-range to select a specific unicode font and fallback to other font for normal text  https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/unicode-range 
+			also important fitzpatrick modiefier needs more research
+			
+			https://css-tricks.com/snippets/css/fluid-typography/
+			
+			https://codepen.io/MadeByMike/pen/bEEGvv
+		*/
+		:root {
+			--defaultfontfamily: #{$default-fonts};
+			
+			--headersfontfamily: #{$header-fonts};
+			
+			--monofontfamily: #{$default-monospace-fonts};
+			--startratio:1.2em;
+			--scaleratio:1.05;
+		}
+		
+		html {
+		  font-family:var(--defaultfontfamily);
+		  line-height: 1.25;
+		  font-weight: 400;
+		  font-style: normal;
+		  text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+		  /* revent adjustments of font size after orientation changes in IE on Windows Phone and in iOS. */
+		  -webkit-text-size-adjust: 100%;
+		  -ms-text-size-adjust: 100%;
+		  -moz-tab-size: 4; 
+		  tab-size: 4; 
+		  
+		}
+		
+		/* Headlines */
+
+		h1,h2,h3,h4,h5,h6 { font-weight: 800;font-family:var(--headersfontfamily);}
+
+		h1 {font-size: calc(var(--startratio) * var(--scaleratio) * var(--scaleratio) * var(--scaleratio) * var(--scaleratio))}
+
+		h2 {font-size: calc(var(--startratio) * var(--scaleratio) * var(--scaleratio) * var(--scaleratio)) }
+
+		h3 {font-size: calc(var(--startratio) * var(--scaleratio) * var(--scaleratio)) }
+
+		h4 {font-size: calc(var(--startratio) * var(--scaleratio)) }
+
+		h5,h6 {font-size: var(--startratio); font-weight:bold} 
+		
+		/* should we add table to this? */
+		code,
+		kbd,
+		samp,
+		pre {
+		  font-family:var(--monofontfamily);
+		  font-size:1em;
+		}
+		
+		
+		/* adjusted to rem instead of em */
+		h1,h2,h3,h4,h5,h6 {margin: 0.6rem 0;}
+		 
+		
+		p, ul {margin: 0.3rem auto 0.3rem auto;}
+	/* END FONT block */

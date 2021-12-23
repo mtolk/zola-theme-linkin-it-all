@@ -1,0 +1,96 @@
+@import '_icondefinitions.scss';
+
+////////////////////////////////////////////////////////////////////
+// mixins
+////////////////////////////////////////////////////////////////////
+
+// TODO add sass function to warn about too little contrast: https://css-tricks.com/programming-sass-to-create-accessible-color-combinations/
+// @warn "too little contrast in aAsbutton .";
+@mixin aAsbutton($backgroundcolor, $color, $bordercolor) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	
+	border:1px solid $bordercolor;	
+	background: $backgroundcolor;
+	color: $color;
+
+	box-sizing: border-box;
+	text-decoration: none;
+	line-height: 1.1;
+	font-weight: bold;
+  font-size:1.4rem;
+	
+	transition: 220ms all ease-in-out;
+	
+	overflow: hidden;
+  
+  &:focus {
+    outline-style: solid;
+    outline-color: transparent;
+    @if $bordercolor == $backgroundcolor {
+       @if lightness($backgroundcolor) > 50  {
+         border-color: scale-color($bordercolor, $lightness: -20%);
+    box-shadow: 0 0 0 4px scale-color($bordercolor, $lightness: -20%);
+      }
+      @else 
+        {
+          border-color: scale-color($bordercolor, $lightness: 20%);
+    box-shadow: 0 0 0 4px scale-color($bordercolor, $lightness: 20%);
+      }
+    }
+    @else {
+      box-shadow: 0 0 0 4px $bordercolor;
+    }
+  }
+	
+	&:hover, &:active {
+    
+    @if lightness($backgroundcolor) > 50  {
+		background-color: scale-color($backgroundcolor, $lightness: -30%);
+    }
+    @else { 
+      background-color: scale-color($backgroundcolor, $lightness: 30%);
+    }
+	 }
+  
+}
+
+
+
+@mixin addiconbeforelink($icons, $size: 1rem) {
+
+	@each $icon in $icons {
+    a[href^="#{map-get($icon, "hrefmatch")}"]{
+		&:before {
+			display:inline-block;
+			height:$size;
+			width:$size;
+			content: url('#{map-get($icon, "icon-url")}');
+			margin-right:0.5rem;
+		 } 
+	  }
+  }	
+}
+
+/* use a map to match urls and matching href. so we need only one list of icons names and links and iconlinks
+https://css-tricks.com/snippets/sass/deep-getset-maps/
+we can then generate different mixins which all use this map for icon backgrounds before after whatever. faviconlike by classname
+*/@mixin replacelinkwithicon($icons, $size: 1rem) {
+  
+  @each $icon in $icons {
+    a[href^="#{map-get($icon, "hrefmatch")}"]{
+      background-color: currentColor;  
+      display:block;
+      overflow:hidden;
+      width:$size;
+      height:$size;
+      padding-left:$size;
+     
+
+      -webkit-mask-image: url('#{map-get($icon, "icon-url")}');
+      mask-image: url('#{'map-get($icon, "icon-url")'}');
+	  }
+  }
+}

@@ -1,0 +1,59 @@
+name = "linkin-it-all"
+description = "A onepage/singlepage theme that acts as your online business card or introduction. It allows the addition of unlimited links similar to linktree. This way it's linking all your online presence on one page."
+## TODO determine right license
+#license = "?"
+homepage = "https://www.marcotolk.com/projects/linkin-it-all"
+# The minimum version of Zola required
+min_version = "0.15.0"
+# An optional live demo URL
+demo = ""
+
+
+default_language = "en"
+compile_sass = true
+build_search_index = false
+
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+
+
+
+# Any variable there can be overridden in the end user `config.toml`
+# You don't need to prefix variables by the theme name but as this will
+# be merged with user data, some kind of prefix or nesting is preferable
+# Use snake_casing to be consistent with the rest of Zola
+[extra]
+title = "Your name's links[demo]"
+description = "All of 'my name''s profiles and links in one place."
+openlinksinnewtab = true
+profileimage = "/images/uploads/abstract-user-flat-4.svg"
+profileimagealttext = "my name portrait"
+404content = "## Page not found\n\nSorry. I have not gotten around to create this page yet.\n\nBut i do have this page for you. Enjoy my [links page](/)"
+enablenetlifycms = true 
+intro = """
+write your intro here """
+
+style = "style"
+
+styleconfig.style.profilepicture.responsivesizes_w = [150,300,600,1000]
+styleconfig.style.profilepicture.responsivesizes_h = [150,300,600,1000]
+styleconfig.style.profilepicture.sizes = "15vw"
+styleconfig.style.linkpicture.responsivesizes_w = [100,200,300]
+styleconfig.style.linkpicture.responsivesizes_h = [100,200,300]
+styleconfig.style.linkpicture.sizes = "100px"
+
+styleconfig.hallo.profilepicture.responsivesizes_w = [150,300,600]
+styleconfig.hallo.profilepicture.responsivesizes_h = [150,300,600]
+styleconfig.hallo.profilepicture.sizes = "(min-width: 992px) 300px, 160px"
+styleconfig.hallo.linkpicture.responsivesizes_w = [100,200,300]
+styleconfig.hallo.linkpicture.responsivesizes_h = [100,200,300]
+styleconfig.hallo.linkpicture.sizes = "100px"
+
+# The theme author info: you!
+[author]
+name = "Marco Tolk"
+homepage = "https://www.marcotolk.com"
