@@ -27,30 +27,30 @@ collections:
               - {label: 'Profile Image alt text', name: 'profileimagealttext', widget: 'string'}
               - {label: Bio, name: intro, widget: markdown}
               - {label: 'Page not found', name: 404content, widget: markdown}
-        - label: "Profiles"
-          name: "profiles"
-          file: "data/onlineprofiles.json"
-          format: "json"
-          fields:
-            - label: 'ProfileList'
-              name: 'profilelist'
-              widget: 'list'
-              allow_add: true
-              fields:
-                - { label: 'Title', name: 'title', widget: 'string' }
-                - { label: 'Link', name: 'link', widget: 'string' }
-        - label: "Links"
-          name: "links"
-          file: "data/linklist.json"
-          format: "json"
-          fields:
-            - label: 'LinkList'
-              name: 'linklist'
-              widget: 'list'
-              allow_add: true
-              fields:
-                - { label: 'Title', name: 'title', widget: 'string' }
-                - { label: 'Description', name: 'description', widget: 'string' }
-                - { label: 'Link', name: 'link', widget: 'string' }
-                - { label: 'Image', name: 'image', widget: 'image', required: false }
-                - { label: 'Image alt text', name: 'imagealttext', widget: 'string', required: false }
+      - label: "Profiles"
+        name: "profiles"
+        file: "data/onlineprofiles.json"
+        format: "json"
+        fields:
+          - label: 'ProfileList'
+            name: 'profilelist'
+            widget: 'list'
+            allow_add: true
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string' }
+              - { label: 'Link', name: 'link', widget: 'string' }
+      - label: "Links"
+        name: "links"
+        file: "data/linklist.json"
+        format: "json"
+        fields:
+          - label: 'LinkList'
+            name: 'linklist'
+            widget: 'list'
+            allow_add: true
+            fields:
+              - { label: 'Title', name: 'title', widget: 'string' }
+              - { label: 'Description', name: 'description', widget: 'string' }
+              - { label: 'Link', name: 'link', widget: 'string' }
+              - { label: 'Image', name: 'image', widget: 'image', required: false }
+              - { label: 'Image alt text', name: 'imagealttext', widget: 'string', required: false }
