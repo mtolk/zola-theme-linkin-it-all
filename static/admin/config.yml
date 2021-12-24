@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: master # Branch to update (optional; defaults to master)
   
+#local_backend: true
+
 # This line should *not* be indented
 media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
 public_folder: "/images/uploads"
@@ -10,23 +12,6 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
-      - label: "Bio"
-        name: "bio"
-        file: "config.toml"
-        format: "toml"
-        fields:
-          - {label: base_url, name: base_url, widget: hidden, default: "linkin-it-all.netlify.app"}
-          - {label: language, name: default_language, widget: select, options: ["en", "nl"]}
-          - {label: theme, name: theme, widget: "hidden", default: "zola-theme-linkin-it-all"}
-          - label: 'Extra'
-            name: 'extra'
-           widget: 'object'
-            fields:
-              - {label: 'Title', name: 'title', widget: 'string'}
-              - {label: 'Profile Image', name: 'profileimage', widget: 'image' }
-              - {label: 'Profile Image alt text', name: 'profileimagealttext', widget: 'string'}
-              - {label: Bio, name: intro, widget: markdown}
-              - {label: 'Page not found', name: 404content, widget: markdown}
       - label: "Profiles"
         name: "profiles"
         file: "data/onlineprofiles.json"
@@ -54,3 +39,20 @@ collections:
               - { label: 'Link', name: 'link', widget: 'string' }
               - { label: 'Image', name: 'image', widget: 'image', required: false }
               - { label: 'Image alt text', name: 'imagealttext', widget: 'string', required: false }
+      - label: "Bio"
+        name: "bio"
+        file: "config.toml"
+        format: "toml"
+        fields:
+          - {label: 'base_url', name: 'base_url', widget: 'hidden', default: 'linkin-it-all.netlify.app'}
+          - {label: 'language', name: 'default_language', widget: 'select', options: ['en', 'nl']}
+          - {label: theme, name: 'theme', widget: 'hidden', default: 'zola-theme-linkin-it-all'}
+          - label: 'Extra'
+            name: 'extra'
+            widget: 'object'
+            fields:
+              - {label: 'Title', name: 'title', widget: 'string'}
+              - {label: 'Profile Image', name: 'profileimage', widget: 'image' }
+              - {label: 'Profile Image alt text', name: 'profileimagealttext', widget: 'string'}
+              - {label: 'Bio', name: 'intro', widget: 'markdown'}
+              - {label: 'Page not found', name: '404content', widget: 'markdown'}
