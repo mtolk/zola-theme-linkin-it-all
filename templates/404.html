@@ -1,4 +1,4 @@
-{% import "macro_picture.html" as picture %}
+{% import "macro_picture.html" as picture %}{% import "macro_analytics.html" as analytics %}
 {%- if pageorsection.extra.style -%}
 	{%- set style = pageorsection.extra.style -%}
 {%- elif config.extra.style -%}
@@ -15,6 +15,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">	
 		<link rel="stylesheet" href="/{{ style }}.css">		
+		{% if config.extra.googleanaltyicsmeasurementid %}
+		{{analytics::googleanalytics(measurementid=config.extra.googleanaltyicsmeasurementid)}}
+		{% endif %}
 	</head>
 	<body>
 		<main>

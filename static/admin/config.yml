@@ -56,3 +56,4 @@ collections:
               - {label: 'Profile Image alt text', name: 'profileimagealttext', widget: 'string'}
               - {label: 'Bio', name: 'intro', widget: 'markdown'}
               - {label: 'Page not found', name: '404content', widget: 'markdown'}
+              - {label: 'Google Analytics measurementid', name: 'googleanaltyicsmeasurementid', widget: 'string', required: false}
